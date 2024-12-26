@@ -1,13 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [RouterModule, CommonModule],
+  template: `
+    <h1>Angular Standalone Auth Example</h1>
+    <nav>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register">Register</a>
+      <a routerLink="/profile">Profile</a>
+    </nav>
+    <router-outlet></router-outlet>
+  `,
 })
 export class AppComponent {
-  title = 'Gravure360_Soumission-spa';
+  constructor() {}
+
 }
