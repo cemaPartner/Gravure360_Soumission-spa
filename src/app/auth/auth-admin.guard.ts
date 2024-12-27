@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuardAdmin implements CanActivate {
   constructor(private authService: AuthService, private router: Router, private http: HttpClient) {}
 
   canActivate(): boolean {
-    if (this.authService.activeUserObservable) {
+    if (this.authService.currentUser.role.id === 1) {
       return true;
     }
 
-    this.router.navigate(['/soumission']);
+    this.router.navigate(['/admin']);
     return false;
   }
 }

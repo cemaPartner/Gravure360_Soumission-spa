@@ -78,4 +78,12 @@ export class HeadersComponent implements OnInit, OnDestroy {
   generateName(): string {
     return this.authService.currentUser.firstName + " " + this.authService.currentUser.lastName + " (" + this.authService.currentUser.company + ")";
   }
+
+  goToAdmin() {
+    this.router.navigate(['/admin']);
+  }
+
+  gotToSoumission() {
+    this.router.navigate(['/soumission']);
+  }
 }
