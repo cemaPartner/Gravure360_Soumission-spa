@@ -17,7 +17,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.currentUser = new User();
+    this.initializeSession();
   }
+
+initializeSession() {
+  const token = this.getToken();
+  if (token && !this.jwtHelper.isTokenExpired(token)) {
+    this.decodeUser();
+    this.activeUser.next(true);
+  } else {
+    this.activeUser.next(false);
+    localStorage.removeItem('token');
+  }
+}
 
   login(username: string, password: string) {
     console.log('Attempting to log in...');
@@ -56,6 +68,7 @@ export class AuthService {
   }
 
   logout() {
+    this.currentUser = new User;
     this.activeUser.next(false);
     localStorage.removeItem('token');
   }

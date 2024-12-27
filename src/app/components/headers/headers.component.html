@@ -1,5 +1,6 @@
 <mat-toolbar>
     <button mat-flat-button>Soumission</button>
+    <button mat-flat-button *ngIf="currentUser.role.id === 1">Administration</button>
     <div class="right">
         <button mat-button *ngIf="isConnected">{{generateName()}}</button>
         <button mat-flat-button (click)="openLogin()">{{isConnected ? "Deconnexion" : "Connexion"}}</button>

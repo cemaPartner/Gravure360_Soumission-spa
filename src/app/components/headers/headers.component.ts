@@ -12,6 +12,7 @@ import {
 import { DialogLogin } from './login/dialogLogin.component';
 import { Subscription } from 'rxjs';
 import { DialogRegister } from './register/dialogRegister.component';
+import { User } from '../../model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -25,14 +26,18 @@ import { DialogRegister } from './register/dialogRegister.component';
 })
 export class HeadersComponent implements OnInit, OnDestroy {
   isConnected: boolean = false;
+  currentUser: User = new User;
   readonly dialog = inject(MatDialog);
   private subscription: Subscription = new Subscription;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { 
+    this.authService = authService;
+  }
 
   ngOnInit(): void {
     this.subscription = this.authService.activeUserObservable.subscribe((value) => {
       this.isConnected = value;
+      this.currentUser = this.authService.currentUser;
     });
   }
 
