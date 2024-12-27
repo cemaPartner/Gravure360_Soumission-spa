@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../model/user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,40 +20,40 @@ export class AuthService {
     this.initializeSession();
   }
 
-initializeSession() {
-  const token = this.getToken();
-  if (token && !this.jwtHelper.isTokenExpired(token)) {
-    this.decodeUser();
-    this.activeUser.next(true);
-  } else {
-    this.activeUser.next(false);
-    localStorage.removeItem('token');
+  initializeSession() {
+    const token = this.getToken();
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      this.decodeUser();
+      this.activeUser.next(true);
+    } else {
+      this.activeUser.next(false);
+      localStorage.removeItem('token');
+    }
   }
-}
 
-  login(username: string, password: string) {
-    console.log('Attempting to log in...');
-    return this.http.post<{ token: string }>(`${this.apiUrl}/api/auth/login`, { username, password }).subscribe({
-      next: (response) => {
-        this.activeUser.next(true);
-        localStorage.setItem('token', response.token);
-        this.decodeUser();
-      },
-      error: (err) => {
-        console.error('Login error:', err);
-      }
-    });
+  async login(username: string, password: string): Promise<boolean> {
+    try {
+      const response = await firstValueFrom(this.http.post<{ token: string }>(`${this.apiUrl}/api/auth/login`, { username, password }));
+      this.activeUser.next(true);
+      localStorage.setItem('token', response.token);
+      this.decodeUser();
+      return true;
+    } catch (err) {
+      console.error('Login error:', err);
+      return false;
+    }
   }
 
   register(user: any) {
     console.log('Attempting to register...');
-    return this.http.post(`${this.apiUrl}/api/auth/register`, { 
+    return this.http.post(`${this.apiUrl}/api/auth/register`, {
       firstName: user.firstName,
       lastName: user.lastName,
       company: user.company,
       passwordHash: user.passwordHash,
       email: user.email,
-      phone: user.phone }, {
+      phone: user.phone
+    }, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

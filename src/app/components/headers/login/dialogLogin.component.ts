@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from "../../../service/auth.service";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'login-dialog',
@@ -29,12 +30,14 @@ import { AuthService } from "../../../service/auth.service";
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatIconModule
+    MatIconModule,
+    NgIf
   ],
 })
 export class DialogLogin {
   readonly dialogRef = inject(MatDialogRef<DialogLogin>);
   hide = signal(true);
+  loginError: boolean = false;
   email = '';
   password = '';
 
@@ -44,9 +47,18 @@ export class DialogLogin {
     this.dialogRef.close();
   }
 
-  continue(): void {
-    this.authService.login(this.email, this.password);
-    this.dialogRef.close();
+  async continue(): Promise<void> {
+    try {
+      const status: boolean = await this.authService.login(this.email, this.password);
+      if (status) {
+        this.dialogRef.close();
+      } else {
+        this.loginError = true;
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      this.loginError = true;
+    }
   }
 
   clickEvent(event: MouseEvent) {
