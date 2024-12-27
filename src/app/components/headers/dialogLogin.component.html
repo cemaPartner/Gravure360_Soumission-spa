@@ -1,21 +1,23 @@
 <h2 mat-dialog-title>Connexion</h2>
-<mat-form-field>
-  <mat-label>Adresse courriel</mat-label>
-  <input matInput [(ngModel)]="email"/>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Mot de passe</mat-label>
-  <input matInput [(ngModel)]="password" [type]="hide() ? 'password' : 'text'" />
-  <button
-    mat-icon-button
-    matSuffix
-    (click)="clickEvent($event)"
-    [attr.aria-label]="'Hide password'"
-    [attr.aria-pressed]="hide()"
-  >
-    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-  </button>
-</mat-form-field>
+<div class="form-container">
+  <mat-form-field class="custom-field">
+    <mat-label>Adresse courriel</mat-label>
+    <input matInput [(ngModel)]="email" />
+  </mat-form-field>
+  <mat-form-field class="custom-field">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput [(ngModel)]="password" [type]="hide() ? 'password' : 'text'" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
 <mat-dialog-actions>
   <button mat-button (click)="close()">fermer</button>
   <button mat-flat-button (click)="continue()">Continuer</button>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../model/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,21 +10,26 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
   private apiUrl = 'http://localhost:8080';
   private jwtHelper = new JwtHelperService();
+  public currentUser: User;
+  private activeUser = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {}
+  activeUserObservable = this.activeUser.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.currentUser = new User();
+  }
 
   login(username: string, password: string) {
     console.log('Attempting to log in...');
     return this.http.post<{ token: string }>(`${this.apiUrl}/api/auth/login`, { username, password }).subscribe({
       next: (response) => {
         console.log('Login successful:', response);
-        // Save the token to localStorage
+        this.activeUser.next(true);
         localStorage.setItem('token', response.token);
-        // You can also navigate to the dashboard or other routes here
+        this.decodeUser();
       },
       error: (err) => {
         console.error('Login error:', err);
-        // Handle error (e.g., show error message to the user)
       }
     });
   }
@@ -32,16 +39,15 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/api/auth/register`, { username, password, role }).subscribe({
       next: (response) => {
         console.log('Register successful:', response);
-        // Handle successful login (e.g., save the token, navigate to the dashboard)
       },
       error: (err) => {
         console.error('Register error:', err);
-        // Handle error (e.g., show error message to the user)
       }
     });
   }
 
   logout() {
+    this.activeUser.next(false);
     localStorage.removeItem('token');
   }
 
@@ -49,18 +55,25 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn(): boolean {
+  getRole(): string {
     const token = this.getToken();
-    let value = token && !this.jwtHelper.isTokenExpired(token);
-    if (typeof value === "boolean") {
-        return value;
-    } else {
-        return false;
+    return token ? this.jwtHelper.decodeToken(token).role : null;
+  }
+
+  decodeUser() {
+    const token = this.getToken();
+    if (token) {
+      this.currentUser.email = this.jwtHelper.decodeToken(token).email;
+      this.currentUser.firstName = this.jwtHelper.decodeToken(token).firstName;
+      this.currentUser.lastName = this.jwtHelper.decodeToken(token).lastName;
+      this.currentUser.company = this.jwtHelper.decodeToken(token).company;
+      this.currentUser.phone = this.jwtHelper.decodeToken(token).phone;
+      this.currentUser.role = this.jwtHelper.decodeToken(token).role;
+      this.currentUser.id = this.jwtHelper.decodeToken(token).id;
     }
   }
 
-  getRole(): string | null {
-    const token = this.getToken();
-    return token ? this.jwtHelper.decodeToken(token).role : null;
+  getUserInfo(): User {
+    return this.currentUser;
   }
 }

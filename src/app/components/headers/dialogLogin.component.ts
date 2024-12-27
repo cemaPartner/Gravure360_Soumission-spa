@@ -18,6 +18,7 @@ import { AuthService } from "../../service/auth.service";
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialogLogin.component.html',
+  styleUrl: 'dialogLogin.component.scss',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -46,6 +47,7 @@ export class DialogLogin {
   continue(): void {
     console.log('Logged in with:', this.email, this.password);
     this.authService.login(this.email, this.password);
+    console.log(this.authService.getUserInfo());
     this.dialogRef.close();
   }
 

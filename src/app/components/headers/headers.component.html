@@ -1,7 +1,7 @@
 <mat-toolbar>
     <button mat-flat-button>Soumission</button>
     <div class="right">
-        <button mat-button *ngIf="isConnected">test</button>
+        <button mat-button *ngIf="isConnected">{{generateName()}}</button>
         <button mat-flat-button (click)="openLogin()">{{isConnected ? "Deconnexion" : "Connexion"}}</button>
     </div>
 </mat-toolbar>
