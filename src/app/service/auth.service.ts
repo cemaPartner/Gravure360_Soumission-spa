@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../model/user';
 import { BehaviorSubject } from 'rxjs';
@@ -23,7 +23,6 @@ export class AuthService {
     console.log('Attempting to log in...');
     return this.http.post<{ token: string }>(`${this.apiUrl}/api/auth/login`, { username, password }).subscribe({
       next: (response) => {
-        console.log('Login successful:', response);
         this.activeUser.next(true);
         localStorage.setItem('token', response.token);
         this.decodeUser();
@@ -34,9 +33,19 @@ export class AuthService {
     });
   }
 
-  register(username: string, password: string, role: string) {
+  register(user: any) {
     console.log('Attempting to register...');
-    return this.http.post(`${this.apiUrl}/api/auth/register`, { username, password, role }).subscribe({
+    return this.http.post(`${this.apiUrl}/api/auth/register`, { 
+      firstName: user.firstName,
+      lastName: user.lastName,
+      company: user.company,
+      passwordHash: user.passwordHash,
+      email: user.email,
+      phone: user.phone }, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).subscribe({
       next: (response) => {
         console.log('Register successful:', response);
       },

@@ -9,8 +9,9 @@ import { NgIf } from '@angular/common';
 import {
   MatDialog
 } from '@angular/material/dialog';
-import { DialogLogin } from './dialogLogin.component';
+import { DialogLogin } from './login/dialogLogin.component';
 import { Subscription } from 'rxjs';
+import { DialogRegister } from './register/dialogRegister.component';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,20 @@ export class HeadersComponent implements OnInit, OnDestroy {
   openLogin() {
     if (!this.isConnected) {
       const dialogRef = this.dialog.open(DialogLogin, {
+        width: '500px',
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    } else {
+      this.authService.logout();
+    }
+  }
+
+  openRegister() {
+    if (!this.isConnected) {
+      const dialogRef = this.dialog.open(DialogRegister, {
         width: '500px',
       });
 

@@ -13,10 +13,10 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from "../../service/auth.service";
+import { AuthService } from "../../../service/auth.service";
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
+  selector: 'login-dialog',
   templateUrl: 'dialogLogin.component.html',
   styleUrl: 'dialogLogin.component.scss',
   standalone: true,
@@ -45,9 +45,7 @@ export class DialogLogin {
   }
 
   continue(): void {
-    console.log('Logged in with:', this.email, this.password);
     this.authService.login(this.email, this.password);
-    console.log(this.authService.getUserInfo());
     this.dialogRef.close();
   }
 

@@ -3,5 +3,6 @@
     <div class="right">
         <button mat-button *ngIf="isConnected">{{generateName()}}</button>
         <button mat-flat-button (click)="openLogin()">{{isConnected ? "Deconnexion" : "Connexion"}}</button>
+        <button mat-flat-button *ngIf="!isConnected" (click)="openRegister()">Nouveau compte</button>
     </div>
 </mat-toolbar>

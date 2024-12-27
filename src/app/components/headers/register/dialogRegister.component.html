@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Inscription</h2>
+<div class="form-container">
+  <!-- First Name and Last Name Fields Side by Side -->
+  <div class="name-container">
+    <mat-form-field class="custom-field">
+      <mat-label>Prénom</mat-label>
+      <input matInput [(ngModel)]="firstName" required />
+    </mat-form-field>
+
+    <mat-form-field class="custom-field">
+      <mat-label>Nom</mat-label>
+      <input matInput [(ngModel)]="lastName" required />
+    </mat-form-field>
+  </div>
+  
+  <!-- Company Name Field -->
+  <mat-form-field class="custom-field">
+    <mat-label>Compagnie</mat-label>
+    <input matInput [(ngModel)]="company" required />
+  </mat-form-field>
+
+  <!-- Email Field -->
+  <mat-form-field class="custom-field">
+    <mat-label>Adresse courriel</mat-label>
+    <input matInput [(ngModel)]="email" type="email" required />
+  </mat-form-field>
+
+  <!-- Phone Number Field -->
+  <mat-form-field class="custom-field">
+    <mat-label>Numéro de téléphone</mat-label>
+    <input matInput [(ngModel)]="phoneNumber" type="tel" required />
+  </mat-form-field>
+
+  <!-- Password Field -->
+  <mat-form-field class="custom-field">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput [(ngModel)]="password" [type]="hide() ? 'password' : 'text'" required />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <!-- Confirm Password Field -->
+  <mat-form-field class="custom-field">
+    <mat-label>Confirmer le mot de passe</mat-label>
+    <input matInput [(ngModel)]="confirmPassword" [type]="hide() ? 'password' : 'text'" required />
+  </mat-form-field>
+
+  <!-- Error Message for Password Mismatch -->
+  <div *ngIf="password && confirmPassword && password !== confirmPassword" class="error-message">
+    Les mots de passe ne correspondent pas.
+  </div>
+</div>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Fermer</button>
+  <button mat-flat-button (click)="continue()" [disabled]="!isFormValid()">Continuer</button>
+</mat-dialog-actions>
