@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MaterialListComponent } from '../material-list/material-list.component';
 import { NgIf } from '@angular/common';
+import { MaterialService } from '../../../service/material.service';
+import { Material } from '../../../model/material';
 
 @Component({
   selector: 'app-materials',
@@ -28,10 +30,13 @@ import { NgIf } from '@angular/common';
   styleUrl: './materials.component.scss'
 })
 export class MaterialsComponent implements OnInit {
+  materialService: MaterialService;
+  materials = new Array<Material>;
   materialForm: FormGroup;
   menuItemName: string = "Ajouter un matériel";
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, materialService: MaterialService) {
+    this.materialService = materialService;
     this.materialForm = this.fb.group({
       name: ['', Validators.required],
       brand: ['', Validators.required],
@@ -41,17 +46,38 @@ export class MaterialsComponent implements OnInit {
       height: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(1)]],
       thickness: ['', [Validators.required, Validators.min(1)]],
-      quantity: ['', [Validators.required, Validators.min(1)]],
+      stock: ['', [Validators.required, Validators.min(1)]],
       adhesive: [false]
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    try {
+      this.materials = await this.materialService.getMaterials();
+    } catch (error) {
+      console.error('Error fetching materials:', error);
+    }
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.materialForm.valid) {
-      console.log('Form Data: ', this.materialForm.value);
+      this.materials = await this.materialService.addMaterial(this.getNewMaterial());
     }
+  }
+
+  getNewMaterial(): Material {
+    let material: Material = new Material;
+    material.name = this.materialForm.get('name')?.value;
+    material.brand = this.materialForm.get('brand')?.value;
+    material.backgroundColor = this.materialForm.get('backgroundColor')?.value;
+    material.engravingColor = this.materialForm.get('engravingColor')?.value;
+    material.width = this.materialForm.get('width')?.value;
+    material.height = this.materialForm.get('height')?.value;
+    material.price = this.materialForm.get('price')?.value;
+    material.thickness = this.materialForm.get('thickness')?.value;
+    material.stock = this.materialForm.get('stock')?.value;
+    material.adhesive = this.materialForm.get('adhesive')?.value;
+
+    return material;
   }
 }

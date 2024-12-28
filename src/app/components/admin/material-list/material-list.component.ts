@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Injectable, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { MaterialItemComponent } from './material-item/material-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgClass, NgForOf } from '@angular/common';
+import { Material } from '../../../model/material';
+import { MaterialService } from '../../../service/material.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,109 +20,14 @@ import { NgClass, NgForOf } from '@angular/common';
   styleUrl: './material-list.component.scss'
 })
 export class MaterialListComponent {
-  materials = [
-    {
-      name: 'Matériau 1',
-      brand: "Troteck",
-      backgroundColor: 'Rouge',
-      engravingColor: 'Blanc',
-      width: '200mm',
-      height: '100mm',
-      thickness: '1.6mm',
-      price: '50€',
-      quantity: '20',
-      adhesive: true
-    },
-    {
-      name: 'Matériau 2',
-      brand: "Troteck",
-      backgroundColor: 'Bleu',
-      engravingColor: 'Noir',
-      width: '150mm',
-      height: '80mm',
-      thickness: '0.8mm',
-      price: '30€',
-      quantity: '10',
-      adhesive: false
-    },
-    {
-      name: 'Matériau 1',
-      brand: "Troteck",
-      backgroundColor: 'Rouge',
-      engravingColor: 'Blanc',
-      width: '200mm',
-      height: '100mm',
-      thickness: '1.6mm',
-      price: '50€',
-      quantity: '20',
-      adhesive: true
-    },
-    {
-      name: 'Matériau 2',
-      brand: "Troteck",
-      backgroundColor: 'Bleu',
-      engravingColor: 'Noir',
-      width: '150mm',
-      height: '80mm',
-      thickness: '0.8mm',
-      price: '30€',
-      quantity: '10',
-      adhesive: false
-    },
-    {
-      name: 'Matériau 1',
-      brand: "Troteck",
-      backgroundColor: 'Rouge',
-      engravingColor: 'Blanc',
-      width: '200mm',
-      height: '100mm',
-      thickness: '1.6mm',
-      price: '50€',
-      quantity: '20',
-      adhesive: true
-    },
-    {
-      name: 'Matériau 2',
-      brand: "Troteck",
-      backgroundColor: 'Bleu',
-      engravingColor: 'Noir',
-      width: '150mm',
-      height: '80mm',
-      thickness: '0.8mm',
-      price: '30€',
-      quantity: '10',
-      adhesive: false
-    },
-    {
-      name: 'Matériau 1',
-      brand: "Troteck",
-      backgroundColor: 'Rouge',
-      engravingColor: 'Blanc',
-      width: '200mm',
-      height: '100mm',
-      thickness: '1.6mm',
-      price: '50€',
-      quantity: '20',
-      adhesive: true
-    },
-    {
-      name: 'Matériau 2',
-      brand: "Troteck",
-      backgroundColor: 'Bleu',
-      engravingColor: 'Noir',
-      width: '150mm',
-      height: '80mm',
-      thickness: '0.8mm',
-      price: '30€',
-      quantity: '10',
-      adhesive: false
-    }
-  ];
+  @Input() materials = new Array<Material>;
   @Output() selectedMaterialIndex = new EventEmitter<number>;
 
-  constructor() { }
+  constructor() { 
+  }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+  }
 
   selectMaterial(index: number): void {
     this.selectedMaterialIndex.emit(index);

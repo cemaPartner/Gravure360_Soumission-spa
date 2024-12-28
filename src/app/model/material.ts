@@ -7,7 +7,7 @@ export interface MaterialInterface {
     height: number;
     thickness: number;
     price: number;
-    quantity: number;
+    stock: number;
     adhesive: boolean;
 }
 
@@ -20,7 +20,7 @@ export class Material implements MaterialInterface {
     height: number = 0;
     thickness: number = 0;
     price: number = 0;
-    quantity: number = 0;
+    stock: number = 0;
     adhesive: boolean = false;
     constructor() { }
 }

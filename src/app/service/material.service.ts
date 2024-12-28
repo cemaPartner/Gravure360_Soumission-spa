@@ -12,10 +12,10 @@ export class MaterialService {
 
   constructor(private http: HttpClient) {}
 
-  async getMaterials(): Promise<Material[]> {
+  async getMaterials(): Promise<Array<Material>> {
     try {
       return await firstValueFrom(
-        this.http.get<Material[]>(`${this.baseUrl}/materials/get`)
+        this.http.get<Material[]>(`${this.baseUrl}/api/material/get`)
       );
     } catch (error) {
       console.error('Error fetching materials:', error);
@@ -23,11 +23,11 @@ export class MaterialService {
     }
   }
 
-  async addMaterial(material: Material): Promise<Material[]> {
+  async addMaterial(material: Material): Promise<Array<Material>> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     try {
       return await firstValueFrom(
-        this.http.post<Material[]>(`${this.baseUrl}/material/add`, material, {
+        this.http.post<Material[]>(`${this.baseUrl}/api/material/add`, material, {
           headers,
         })
       );

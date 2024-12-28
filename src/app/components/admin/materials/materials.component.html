@@ -56,9 +56,9 @@
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Épaisseur</mat-label>
             <mat-select formControlName="thickness" required>
-              <mat-option value="0.8">0.8mm</mat-option>
-              <mat-option value="1.6">1.6mm</mat-option>
-              <mat-option value="3.2">3.2mm</mat-option>
+              <mat-option [value]=0.8>0.8mm</mat-option>
+              <mat-option [value]=1.6>1.6mm</mat-option>
+              <mat-option [value]=3.2>3.2mm</mat-option>
             </mat-select>
             <mat-error *ngIf="materialForm.controls['thickness'].hasError('required')">
               L'épaisseur est requise
@@ -75,8 +75,8 @@
 
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Quantité</mat-label>
-            <input matInput formControlName="quantity" type="number" required />
-            <mat-error *ngIf="materialForm.controls['quantity'].hasError('required')">
+            <input matInput formControlName="stock" type="number" required />
+            <mat-error *ngIf="materialForm.controls['stock'].hasError('required')">
               La quantité est requise
             </mat-error>
           </mat-form-field>
@@ -94,5 +94,5 @@
     </mat-card-content>
   </mat-card>
 
-  <app-material-list></app-material-list>
+  <app-material-list [materials]="materials"></app-material-list>
 </div>
