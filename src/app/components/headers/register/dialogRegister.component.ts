@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, Injectable, signal } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -15,7 +15,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from "../../../service/auth.service";
 import { User } from "../../../model/user";
+import { NgIf } from "@angular/common";
 
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'register-dialog',
   templateUrl: 'dialogRegister.component.html',
@@ -30,7 +34,8 @@ import { User } from "../../../model/user";
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatIconModule
+    MatIconModule,
+    NgIf
   ],
 })
 export class DialogRegister {

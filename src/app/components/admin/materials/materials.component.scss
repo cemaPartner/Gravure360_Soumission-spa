@@ -13,11 +13,19 @@
 .card {
   padding: 15px;
   max-width: 400px; 
-  display: block; 
+  display: flex;
+  flex-direction: column;
   width: auto; 
-  height: auto; 
+  height: 85vh; 
   vertical-align: top; 
   flex-shrink: 0; 
+}
+
+.card .scrollable {
+  flex: 1;                // Allows the content to grow
+  overflow-y: auto;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .full-width {

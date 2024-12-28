@@ -2,11 +2,7 @@
   <mat-card-content>
     <h3>Liste des matériaux</h3>
 
-    <!-- Display the materials -->
-    <div *ngFor="let material of materials; let i = index" 
-         class="material-list-item"
-         (click)="selectMaterial(i)" 
-         [ngClass]="{'selected': selectedMaterialIndex === i}">
+    <div *ngFor="let material of materials; let i = index" (click)="selectMaterial(i)">
       <app-material-item [material]="material"></app-material-item>
     </div>
   </mat-card-content>

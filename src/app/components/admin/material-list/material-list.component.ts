@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Output } from '@angular/core';
 import { MaterialItemComponent } from './material-item/material-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgClass, NgForOf } from '@angular/common';
 
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-material-list',
   standalone: true,
@@ -98,7 +101,7 @@ export class MaterialListComponent {
       thickness: '1.6mm',
       price: '50€',
       quantity: '20',
-      adhesive: trueg
+      adhesive: true
     },
     {
       name: 'Matériau 2',
@@ -113,7 +116,7 @@ export class MaterialListComponent {
       adhesive: false
     }
   ];
-   @Output() selectedMaterialIndex = new EventEmitter<number>;
+  @Output() selectedMaterialIndex = new EventEmitter<number>;
 
   constructor() { }
 
