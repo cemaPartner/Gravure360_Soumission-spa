@@ -1,14 +1,37 @@
 .card {
   width: 100%;
   max-width: 600px;
-  /* Adjust width */
   margin-left: 20px;
-  /* Align to the left with a little margin */
-  margin-top: 20px;
-  /* Add space from the top of the page */
   padding: 15px;
+  height: auto;
+  max-height: 82vh; /* Set the max height relative to the viewport height */
+  overflow: hidden; /* Prevent overflow outside of the card */
+}
+
+.card mat-card-content {
+  max-height: 100%; /* Allow content to take up full height within the card */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 div {
   padding: 5px;
+  margin-bottom: 10px; /* Optional: Space between divs */
+}
+
+::ng-deep .material-list-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  background-color: white; /* Default background color */
+  border-radius: 8px; /* Match the mat-card-content's rounded corners */
+}
+
+::ng-deep .material-list-item.selected mat-card-content {
+  background-color: #b8b8b8; /* Change background color on selection */
+  border-radius: 8px; /* Match the mat-card-content's rounded corners */
+}
+
+::ng-deep .material-list-item:hover mat-card-content {
+  background-color: #d3d3d3; /* Light highlight on hover (optional) */
+  border-radius: 8px; /* Match the mat-card-content's rounded corners */
 }

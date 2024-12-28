@@ -1,27 +1,41 @@
-.card {
-    width: 100%;
-    max-width: 400px;  /* Adjust width */
-    margin-left: 20px;  /* Align to the left with a little margin */
-    margin-top: 20px;   /* Add space from the top of the page */
-    padding: 15px;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Adds spacing between the elements */
-  }
-  
-  .form-actions {
-    margin-top: 20px;
-    text-align: right;
-  }
+.container {
+  display: flex;
+  gap: 10px; 
+  justify-content: flex-start; 
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  align-items: flex-start; 
+  margin-left: 0; 
+}
 
-  .container {
-    display: flex;
-    gap: 10px;  /* Optional space between the form and the material list */
-  }
+.card {
+  padding: 15px;
+  max-width: 400px; 
+  display: block; 
+  width: auto; 
+  height: auto; 
+  vertical-align: top; 
+  flex-shrink: 0; 
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+app-material-list {
+  flex-grow: 1;
+  width: 100%;
+}

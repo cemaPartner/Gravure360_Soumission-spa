@@ -1,10 +1,13 @@
 <mat-card appearance="outlined" class="card">
-    <mat-card-content>
-      <h3>Liste des matériaux</h3>
-  
-      <!-- Display the materials -->
-      <div *ngFor="let material of materials" class="material-list-item">
-        <app-material-item [material]="material"></app-material-item>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <mat-card-content>
+    <h3>Liste des matériaux</h3>
+
+    <!-- Display the materials -->
+    <div *ngFor="let material of materials; let i = index" 
+         class="material-list-item"
+         (click)="selectMaterial(i)" 
+         [ngClass]="{'selected': selectedMaterialIndex === i}">
+      <app-material-item [material]="material"></app-material-item>
+    </div>
+  </mat-card-content>
+</mat-card>
