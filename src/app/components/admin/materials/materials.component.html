@@ -1,0 +1,98 @@
+<div class="container">
+  <mat-card appearance="outlined" class="card">
+    <mat-card-content>
+      <h3>{{menuItemName}}</h3>
+      <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nom du matériel</mat-label>
+            <input matInput formControlName="name" required />
+            <mat-error *ngIf="materialForm.controls['name'].hasError('required')">
+              Le nom est requis
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Marque du matériel</mat-label>
+            <input matInput formControlName="brand" required />
+            <mat-error *ngIf="materialForm.controls['brand'].hasError('required')">
+              La marque est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Couleur de fond</mat-label>
+            <input matInput formControlName="backgroundColor" required />
+            <mat-error *ngIf="materialForm.controls['backgroundColor'].hasError('required')">
+              La couleur de fond est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Couleur d'engravage</mat-label>
+            <input matInput formControlName="engravingColor" required />
+            <mat-error *ngIf="materialForm.controls['engravingColor'].hasError('required')">
+              La couleur d'engravage est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Largeur</mat-label>
+            <input matInput formControlName="width" type="number" required />
+            <mat-error *ngIf="materialForm.controls['width'].hasError('required')">
+              La largeur est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Hauteur</mat-label>
+            <input matInput formControlName="height" type="number" required />
+            <mat-error *ngIf="materialForm.controls['height'].hasError('required')">
+              La hauteur est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Épaisseur</mat-label>
+            <mat-select formControlName="thickness" required>
+              <mat-option value="0.8">0.8mm</mat-option>
+              <mat-option value="1.6">1.6mm</mat-option>
+              <mat-option value="3.2">3.2mm</mat-option>
+            </mat-select>
+            <mat-error *ngIf="materialForm.controls['thickness'].hasError('required')">
+              L'épaisseur est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Prix</mat-label>
+            <input matInput formControlName="price" type="number" required />
+            <mat-error *ngIf="materialForm.controls['price'].hasError('required')">
+              Le prix est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Quantité</mat-label>
+            <input matInput formControlName="quantity" type="number" required />
+            <mat-error *ngIf="materialForm.controls['quantity'].hasError('required')">
+              La quantité est requise
+            </mat-error>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="adhesive">Adhésif</mat-checkbox>
+
+        </div>
+
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="materialForm.invalid">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <app-material-list></app-material-list>
+</div>

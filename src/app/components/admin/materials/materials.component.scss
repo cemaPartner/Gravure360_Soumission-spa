@@ -1,0 +1,27 @@
+.card {
+    width: 100%;
+    max-width: 400px;  /* Adjust width */
+    margin-left: 20px;  /* Align to the left with a little margin */
+    margin-top: 20px;   /* Add space from the top of the page */
+    padding: 15px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds spacing between the elements */
+  }
+  
+  .form-actions {
+    margin-top: 20px;
+    text-align: right;
+  }
+
+  .container {
+    display: flex;
+    gap: 10px;  /* Optional space between the form and the material list */
+  }
