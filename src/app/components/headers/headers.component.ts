@@ -5,14 +5,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { NgIf } from '@angular/common';
-import {
-  MatDialog
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogLogin } from './login/dialogLogin.component';
 import { Subscription } from 'rxjs';
 import { DialogRegister } from './register/dialogRegister.component';
 import { User } from '../../model/user';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { NgIf } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { MaterialsComponent } from '../admin/materials/materials.component';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,15 @@ import { User } from '../../model/user';
 @Component({
   selector: 'app-headers',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatDividerModule, MatIconModule, NgIf],
+  imports: [MatToolbarModule, 
+    MatButtonModule, 
+    MatDividerModule, 
+    MatIconModule, 
+    MatSidenavModule,
+    MatListModule,
+  NgIf,
+  MatMenuModule,
+  MaterialsComponent],
   templateUrl: './headers.component.html',
   styleUrl: './headers.component.scss'
 })
@@ -30,7 +40,7 @@ export class HeadersComponent implements OnInit, OnDestroy {
   readonly dialog = inject(MatDialog);
   private subscription: Subscription = new Subscription;
 
-  constructor(private router: Router, private authService: AuthService) { 
+  constructor(private router: Router, private authService: AuthService) {
     this.authService = authService;
   }
 
