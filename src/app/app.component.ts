@@ -72,6 +72,7 @@ export class AppComponent {
       });
     } else {
       this.authService.logout();
+      this.router.navigate(['/']);
     }
   }
 
