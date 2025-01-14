@@ -6,10 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MaterialListComponent } from '../material-list/material-list.component';
+import { MaterialListComponent } from './material-list/material-list.component';
 import { NgIf } from '@angular/common';
-import { MaterialService } from '../../../service/material.service';
-import { Material } from '../../../model/material';
+import { MaterialService } from '../../../../service/material.service';
+import { Material } from '../../../../model/material';
 
 @Component({
   selector: 'app-materials',

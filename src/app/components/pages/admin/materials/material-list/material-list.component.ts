@@ -2,8 +2,8 @@ import { Component, EventEmitter, Injectable, Input, Output } from '@angular/cor
 import { MaterialItemComponent } from './material-item/material-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgClass, NgForOf } from '@angular/common';
-import { Material } from '../../../model/material';
-import { MaterialService } from '../../../service/material.service';
+import { Material } from '../../../../../model/material';
+import { MaterialService } from '../../../../../service/material.service';
 
 @Injectable({
   providedIn: 'root',

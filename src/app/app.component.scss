@@ -1,31 +1,54 @@
-section {
-    display: table;
-  }
-  
-  .example-label {
-    display: table-cell;
-    font-size: 14px;
-    margin-left: 8px;
-    min-width: 120px;
-  }
-  
-  .example-button-row {
-    display: table-cell;
-    max-width: 600px;
-  }
-  
-  .example-button-row .mat-mdc-button-base {
-    margin: 8px 8px 8px 0;
-  }
-  
-  .example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 140px;
-  }
+/* Full height for the sidenav container */
+.sidenav-container {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: row; /* Ensure side-by-side layout */
+}
+
+/* Sidenav itself takes up full height */
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Full height */
+  width: 240px; /* Adjust the width of your sidenav */
+  position: relative;
+}
+
+/* Ensure mat-nav-list grows to fill the available space inside sidenav */
+.mat-nav-list {
+  flex-grow: 1; /* Allow the nav list to grow and take available space */
+  overflow-y: auto; /* Enable vertical scrolling when content overflows */
+  padding: 0; /* Remove padding to avoid unnecessary space */
+}
+
+/* Sticky toolbar to ensure it stays at the top */
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures space between title and icons */
+}
+
+.labelSideNav {
+  padding-left: 16px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+/* Ensure no extra margin in mat-list items */
+mat-list-item {
+  margin: 0;
+}
+
+.content {
+  height: 100vh;
+}
+
+router-outlet {
+  min-height: 100vh;
+}

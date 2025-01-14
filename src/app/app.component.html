@@ -1,3 +1,62 @@
-<router-outlet>
-    <app-headers></app-headers>
-</router-outlet>
+<mat-toolbar color="primary" style="display: flex;">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleSideBar()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>Gravure360</span>
+
+  <!-- Spacer to push elements to the right -->
+  <div style="flex: 1;"></div>
+
+  <!-- Profile Icon with Dropdown -->
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item *ngIf="isConnected">
+      <mat-icon>person</mat-icon>
+      <span>Mon profil</span>
+    </button>
+    <button mat-menu-item *ngIf="isConnected">
+      <mat-icon>settings</mat-icon>
+      <span>Paramètres</span>
+    </button>
+    <button mat-menu-item *ngIf="!isConnected" (click)="openLogin()">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </button>
+    <button mat-menu-item *ngIf="isConnected" (click)="openLogin()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
+  <!-- Shopping Cart Icon -->
+  <button mat-icon-button aria-label="Carte">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" mode="side" [opened]="isShowing">
+    <mat-nav-list>
+      <p mat-list-item class="labelSideNav" *ngIf="currentUser.role.id === 1">Administration</p>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminMaterials()">Gestion des matériaux</a>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminCosting()">Gestion des coûts</a>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminQuotes()">Soumissions</a>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminOrders()">Commandes</a>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminInventory()">Inventaire</a>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminClients()">Clients</a>
+      <br>
+      <p mat-list-item class="labelSideNav" *ngIf="currentUser.role.id === 1">Client</p>
+      <a mat-list-item *ngIf="currentUser.role.id" (click)="goToNewQuote()">Nouvelle soumission</a>
+      <a mat-list-item *ngIf="currentUser.role.id" (click)="goToEditQuote()">Ajout à une soumission</a>
+      <a mat-list-item *ngIf="currentUser.role.id" (click)="goToPendingQuote()">Soumissions en cours</a>
+      <a mat-list-item *ngIf="currentUser.role.id" (click)="goToOrders()">Commandes</a>
+      <a mat-list-item *ngIf="!currentUser.role.id" (click)="openLogin()">Connexion</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

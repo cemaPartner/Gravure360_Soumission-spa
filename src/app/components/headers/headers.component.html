@@ -41,7 +41,7 @@
     <mat-sidenav #drawer class="sidenav" mode="side">
       <mat-nav-list>
         <p mat-list-item class="labelSideNav" *ngIf="currentUser.role.id === 1">Administration</p>
-        <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdmin()">Gestion des matériaux</a>
+        <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminMaterials()">Gestion des matériaux</a>
         <a mat-list-item href="#" *ngIf="currentUser.role.id === 1">Gestion des coûts</a>
         <a mat-list-item href="#" *ngIf="currentUser.role.id === 1">Soumissions</a>
         <a mat-list-item href="#" *ngIf="currentUser.role.id === 1">Commandes</a>

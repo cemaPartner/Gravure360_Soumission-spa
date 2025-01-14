@@ -14,7 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NgIf } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
-import { MaterialsComponent } from '../admin/materials/materials.component';
+import { MaterialsComponent } from '../pages/admin/materials/materials.component';
 
 @Injectable({
   providedIn: 'root',
@@ -89,8 +89,8 @@ export class HeadersComponent implements OnInit, OnDestroy {
     return this.authService.currentUser.firstName + " " + this.authService.currentUser.lastName + " (" + this.authService.currentUser.company + ")";
   }
 
-  goToAdmin() {
-    this.router.navigate(['/admin']);
+  goToAdminMaterials() {
+    this.router.navigate(['/admin/materials']);
   }
 
   gotToSoumission() {
