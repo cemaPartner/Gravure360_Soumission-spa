@@ -3,36 +3,37 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { Material } from '../model/material';
 import { BFF_CONFIG } from '../bff.config';
+import { Color } from '../model/color';
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class MaterialService {
+export class ColorService {
 
   constructor(private http: HttpClient) {}
 
-  async getMaterials(): Promise<Array<Material>> {
+  async getColors(): Promise<Array<Color>> {
     try {
       return await firstValueFrom(
-        this.http.get<Material[]>(`${BFF_CONFIG.BACKEND_URL}/api/material/get`)
+        this.http.get<Color[]>(`${BFF_CONFIG.BACKEND_URL}/api/color/get`)
       );
     } catch (error) {
-      console.error('Error fetching materials:', error);
+      console.error('Error fetching colors:', error);
       return [];
     }
   }
 
-  async addMaterial(material: Material): Promise<Array<Material>> {
+  async addMaterial(color: Color): Promise<Array<Color>> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     try {
       return await firstValueFrom(
-        this.http.post<Material[]>(`${BFF_CONFIG.BACKEND_URL}/api/material/add`, material, {
+        this.http.post<Color[]>(`${BFF_CONFIG.BACKEND_URL}/api/color/add`, color, {
           headers,
         })
       );
     } catch (error) {
-      console.error('Error adding material:', error);
+      console.error('Error adding color:', error);
       return [];
     }
   }
