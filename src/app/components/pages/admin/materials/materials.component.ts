@@ -23,7 +23,7 @@ import { ColorService } from '../../../../service/color.service';
     MatInputModule, 
     MatSelectModule, 
     FormsModule, 
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     NgIf,

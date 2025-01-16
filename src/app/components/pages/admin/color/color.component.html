@@ -10,8 +10,17 @@
                 <mat-label>Nom anglais</mat-label>
                 <input matInput class="example-right-align" [(ngModel)]="nameEn"/>
             </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Texture</mat-label>
+                <mat-select [(ngModel)]="texture" required>
+                  <mat-option [value]="'Mat'">Mat</mat-option>
+                  <mat-option [value]="'Gloss'">Gloss</mat-option>
+                  <mat-option [value]="'Aluminium'">Aluminium</mat-option>
+                  <mat-option [value]="'Transparent'">Transparent</mat-option>
+                </mat-select>
+              </mat-form-field>
             <input class="color-input" [style.background]="color1" [(colorPicker)]="color1"
-                (colorPickerChange)="onChangeColorHex8($event);" />
+                (colorPickerChange)="onChangeColorHex8($event);" readonly/>
             <br>
             <button mat-flat-button style="margin-top: 10px;" (click)="addColor()">Ajouter</button>
         </mat-card-content>

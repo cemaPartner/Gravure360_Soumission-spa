@@ -8,7 +8,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { ColorService } from '../../../../service/color.service';
 import { Color } from '../../../../model/color';
 import { FormsModule, NgModel } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-color',
@@ -21,7 +23,10 @@ import { NgFor } from '@angular/common';
     MatIconModule,
     MatButtonModule,
     ColorPickerModule,
-    NgFor
+    NgFor,
+    MatSelectModule,
+    MatOptionModule,
+    CommonModule
   ],
   templateUrl: './color.component.html',
   styleUrl: './color.component.scss'
@@ -30,6 +35,7 @@ export class ColorComponent implements OnInit{
   color1: string = '#2889e9';
   nameFr: string = '';
   nameEn: string = '';
+  texture: string = 'Mat';
   selectedColor: string = '#2889e9';
   colorService: ColorService;
   availableColors: Color[] = [];
