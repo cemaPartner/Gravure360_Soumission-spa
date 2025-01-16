@@ -1,3 +1,6 @@
 div.page {
-    min-height: 100vh;
-  }
+  min-height: 100vh; /* Full viewport height */
+  margin: 15px; /* Adds margin around the content */
+  box-sizing: border-box; /* Includes margin and padding in the element's size */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}

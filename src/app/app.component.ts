@@ -2,8 +2,6 @@ import { CommonModule, NgClass, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from './service/auth.service';
-import { HeadersComponent } from './components/headers/headers.component';
-import { AddComponent } from "./components/soumission/add/add.component";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -21,10 +19,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, 
-    CommonModule, 
-    HeadersComponent, 
-    AddComponent, 
+  imports: [
+    RouterModule, 
+    CommonModule,
     NgClass, 
     MatToolbarModule,
     MatButtonModule,
@@ -100,6 +97,11 @@ export class AppComponent {
 
   goToAdminMaterials() {
     this.router.navigate(['/admin/materials']);
+    this.isShowing = false;
+  }
+
+  goToAdminColors() {
+    this.router.navigate(['/admin/colors']);
     this.isShowing = false;
   }
 

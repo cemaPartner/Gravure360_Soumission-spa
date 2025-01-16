@@ -1,0 +1,16 @@
+<mat-card class="main">
+  <mat-card-content> 
+    <mat-card class="overlapping-card" [ngStyle]="{'background-color': color1}" [class.transparent]="isTransparent">
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="overlapping-card second-card" [ngStyle]="{'background-color': color2}"
+      [class.transparent]="isTransparent">
+      <mat-card-content>
+        <!-- Content for the second card -->
+        <h5>Card 2</h5>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

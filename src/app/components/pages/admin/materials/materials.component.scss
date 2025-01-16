@@ -12,7 +12,7 @@
 
 .card {
   padding: 15px;
-  max-width: 400px; 
+  max-width: 350px; 
   display: flex;
   flex-direction: column;
   width: auto; 
@@ -43,7 +43,10 @@
   text-align: right;
 }
 
-app-material-list {
-  flex-grow: 1;
-  width: 100%;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns per row */
+  grid-gap: 16px; /* Space between items */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80vh; /* Set a max height for scrolling */
 }

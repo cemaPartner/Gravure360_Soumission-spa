@@ -1,0 +1,38 @@
+.overlapping-card {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 16px; /* Rounded corners */
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    transition: all 0.3s ease;
+  
+    &.transparent {
+      background: repeating-linear-gradient(45deg, #888, #888 10px, transparent 10px, transparent 20px);
+    }
+  
+    &.second-card {
+      bottom: 80px;
+      left: 20px;
+    }
+  }
+  
+  .mat-card-content {
+    padding: 16px;
+  }
+
+  .main {
+    width: 155px;
+    height: 155px;
+    margin: 10px;
+  }
+
+  div {
+    transition: box-shadow 0.3s ease; /* Ensure smooth transition */
+  }
+  
+  div:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+    cursor: pointer;
+  }

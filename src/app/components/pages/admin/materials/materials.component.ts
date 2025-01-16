@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -6,10 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MaterialListComponent } from './material-list/material-list.component';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { MaterialService } from '../../../../service/material.service';
 import { Material } from '../../../../model/material';
+import { MaterialItemComponent } from './material-item/material-item.component';
 
 @Component({
   selector: 'app-materials',
@@ -24,12 +24,14 @@ import { Material } from '../../../../model/material';
     ReactiveFormsModule, 
     MatButtonModule,
     MatCheckboxModule,
-    MaterialListComponent,
-    NgIf],
+    NgIf,
+    NgFor,
+    MaterialItemComponent],
   templateUrl: './materials.component.html',
   styleUrl: './materials.component.scss'
 })
 export class MaterialsComponent implements OnInit {
+  @Output() selectedMaterialIndex = new EventEmitter<number>;
   materialService: MaterialService;
   materials = new Array<Material>;
   materialForm: FormGroup;
@@ -79,5 +81,9 @@ export class MaterialsComponent implements OnInit {
     material.adhesive = this.materialForm.get('adhesive')?.value;
 
     return material;
+  }
+
+  selectMaterial(index: number): void {
+    this.selectedMaterialIndex.emit(index);
   }
 }

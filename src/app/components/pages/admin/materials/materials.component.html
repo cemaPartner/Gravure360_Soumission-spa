@@ -94,5 +94,15 @@
     </mat-card-content>
   </mat-card>
 
-  <app-material-list [materials]="materials"></app-material-list>
+  <mat-card appearance="outlined" style="width: 65%;">
+    <mat-card-content>
+      <h3>Liste des matériaux</h3>
+
+      <div class="grid-container">
+        <div *ngFor="let material of materials; let i = index" (click)="selectMaterial(i)">
+          <app-material-item></app-material-item>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

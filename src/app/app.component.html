@@ -41,6 +41,7 @@
     <mat-nav-list>
       <p mat-list-item class="labelSideNav" *ngIf="currentUser.role.id === 1">Administration</p>
       <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminMaterials()">Gestion des matériaux</a>
+      <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminColors()">Gestion des couleurs</a>
       <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminCosting()">Gestion des coûts</a>
       <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminQuotes()">Soumissions</a>
       <a mat-list-item *ngIf="currentUser.role.id === 1" (click)="goToAdminOrders()">Commandes</a>

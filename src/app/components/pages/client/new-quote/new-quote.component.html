@@ -1,2 +1,25 @@
-<div class="page">
+<div class="page" style="width: 40%;">
+    <h3>Nouvelle soumission</h3>
+    <mat-card appearance="outlined">
+        <mat-card-content>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput></textarea>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Date de livraison désirée</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <button mat-flat-button>Soumettre</button>
+            </div>
+        </mat-card-content>
+      </mat-card>
 </div>

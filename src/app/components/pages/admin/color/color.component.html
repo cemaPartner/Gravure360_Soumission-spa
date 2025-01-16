@@ -1,0 +1,26 @@
+<div class="page">
+    <mat-card appearance="outlined" class="card">
+        <mat-card-content class="scrollable">
+            <p>Emballage</p>
+            <mat-form-field floatLabel="always">
+                <mat-label>Plastique - Coût par cm²</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0.00" />
+                <span matTextSuffix>&nbsp;$&nbsp;</span>
+              </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Enveloppe - Coût par unité</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0.00" />
+                <span matTextSuffix>&nbsp;$&nbsp;</span>
+              </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Étiquette - Coût par unité</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0.00" />
+                <span matTextSuffix>&nbsp;$&nbsp;</span>
+              </mat-form-field>
+              <button mat-flat-button>Soumettre</button>
+              <div class="col-md-5">
+                <input [style.background]="color1" [(colorPicker)]="color1" (colorPickerChange)="onChangeColorHex8($event);"/>
+              </div>
+        </mat-card-content>
+    </mat-card>
+</div>

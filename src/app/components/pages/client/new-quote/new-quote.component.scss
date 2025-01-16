@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+button {
+  margin-top: 8px;
+  width: 150px;
+}
