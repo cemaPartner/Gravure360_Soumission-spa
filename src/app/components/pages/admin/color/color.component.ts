@@ -52,7 +52,7 @@ export class ColorComponent implements OnInit{
 
   async addColor() {
     console.log(this.selectedColor);
-    await this.colorService.addColor(new Color(this.nameFr,this.nameEn, this.selectedColor)).then(colors => {
+    await this.colorService.addColor(new Color(this.nameFr,this.nameEn, this.selectedColor, this.texture)).then(colors => {
       this.availableColors = colors;
     });
   }
