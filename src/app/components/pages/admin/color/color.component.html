@@ -4,16 +4,26 @@
             <p>Couleur</p>
             <mat-form-field floatLabel="always" class="input">
                 <mat-label>Nom français</mat-label>
-                <input matInput class="example-right-align" />
+                <input matInput class="example-right-align" [(ngModel)]="nameFr"/>
             </mat-form-field>
             <mat-form-field floatLabel="always" class="input">
                 <mat-label>Nom anglais</mat-label>
-                <input matInput class="example-right-align" />
+                <input matInput class="example-right-align" [(ngModel)]="nameEn"/>
             </mat-form-field>
             <input class="color-input" [style.background]="color1" [(colorPicker)]="color1"
                 (colorPickerChange)="onChangeColorHex8($event);" />
             <br>
-            <button mat-flat-button style="margin-top: 10px;">Ajouter</button>
+            <button mat-flat-button style="margin-top: 10px;" (click)="addColor()">Ajouter</button>
         </mat-card-content>
     </mat-card>
+
+    <mat-card appearance="outlined" class="cardSwatch">
+        <mat-card-content>
+          <p>Couleurs disponibles</p>
+          <div class="grid-container">
+            <div class="swatch" *ngFor="let color of availableColors" [style.background]="color.hex">
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
 </div>

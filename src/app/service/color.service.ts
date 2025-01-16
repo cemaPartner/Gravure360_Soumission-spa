@@ -24,9 +24,10 @@ export class ColorService {
     }
   }
 
-  async addMaterial(color: Color): Promise<Array<Color>> {
+  async addColor(color: Color): Promise<Array<Color>> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     try {
+      console.log(color);
       return await firstValueFrom(
         this.http.post<Color[]>(`${BFF_CONFIG.BACKEND_URL}/api/color/add`, color, {
           headers,

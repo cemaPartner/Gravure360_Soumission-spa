@@ -10,6 +10,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { MaterialService } from '../../../../service/material.service';
 import { Material } from '../../../../model/material';
 import { MaterialItemComponent } from './material-item/material-item.component';
+import { Color } from '../../../../model/color';
+import { ColorService } from '../../../../service/color.service';
 
 @Component({
   selector: 'app-materials',
@@ -33,12 +35,18 @@ import { MaterialItemComponent } from './material-item/material-item.component';
 export class MaterialsComponent implements OnInit {
   @Output() selectedMaterialIndex = new EventEmitter<number>;
   materialService: MaterialService;
+  colorService: ColorService;
   materials = new Array<Material>;
   materialForm: FormGroup;
   menuItemName: string = "Ajouter un matériel";
+  availableColors: Color[] = [];
 
-  constructor(private fb: FormBuilder, materialService: MaterialService) {
+  constructor(
+    private fb: FormBuilder, 
+    materialService: MaterialService,
+    colorService: ColorService) {
     this.materialService = materialService;
+    this.colorService = colorService;
     this.materialForm = this.fb.group({
       name: ['', Validators.required],
       brand: ['', Validators.required],
@@ -58,6 +66,12 @@ export class MaterialsComponent implements OnInit {
       this.materials = await this.materialService.getMaterials();
     } catch (error) {
       console.error('Error fetching materials:', error);
+    }
+
+    try {
+      this.availableColors = await this.colorService.getColors();
+    } catch (error) {
+      console.error('Error fetching colors:', error);
     }
   }
 

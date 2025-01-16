@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card appearance="outlined" class="card">
     <mat-card-content class="scrollable">
-      <h3>{{menuItemName}}</h3>
+      <p>{{menuItemName}}</p>
       <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
 
@@ -23,7 +23,15 @@
 
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Couleur de fond</mat-label>
-            <input matInput formControlName="backgroundColor" required />
+            <mat-select formControlName="backgroundColor" required>
+              <mat-option *ngFor="let color of availableColors" [value]="color.id">
+                <div class="color-option">
+                  <span class="color-circle" [style.background-color]="color.hex"></span>
+                  <span>&nbsp;</span>
+                  <span>{{ color.nameFr }}</span>
+                </div>
+              </mat-option>
+            </mat-select>
             <mat-error *ngIf="materialForm.controls['backgroundColor'].hasError('required')">
               La couleur de fond est requise
             </mat-error>
@@ -31,7 +39,15 @@
 
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Couleur d'engravage</mat-label>
-            <input matInput formControlName="engravingColor" required />
+            <mat-select formControlName="engravingColor" required>
+              <mat-option *ngFor="let color of availableColors" [value]="color.id">
+                <div class="color-option">
+                  <span class="color-circle" [style.background-color]="color.hex"></span>
+                  <span>&nbsp;</span>
+                  <span>{{ color.nameFr }}</span>
+                </div>
+              </mat-option>
+            </mat-select>
             <mat-error *ngIf="materialForm.controls['engravingColor'].hasError('required')">
               La couleur d'engravage est requise
             </mat-error>
@@ -94,9 +110,9 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card appearance="outlined" style="width: 65%;">
+  <mat-card appearance="outlined" style="width: 65%; padding: 15px;">
     <mat-card-content>
-      <h3>Liste des matériaux</h3>
+      <p>Liste des matériaux</p>
 
       <div class="grid-container">
         <div *ngFor="let material of materials; let i = index" (click)="selectMaterial(i)">
