@@ -1,3 +1,61 @@
 <div class="page">
+    <mat-card class="welcome-card" *ngIf="isConnected">
+        <div class="welcome-card-content">
+            <!-- User Information -->
+            <div class="user-info">
+                <h2>Bienvenue, {{ currentUser.firstName }} {{ currentUser.lastName }}</h2>
+                <p><strong>Compagnie:</strong> {{ currentUser.company }}</p>
+                <p><strong>Email:</strong> {{ currentUser.email }}</p>
+                <p><strong>Téléphone:</strong> {{ currentUser.phone }}</p>
+            </div>
 
+            <!-- Quotes and Orders Tables -->
+            <div class="tables-section">
+                <div class="table-wrapper">
+                    <h3>Soumissions</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Quote A</td>
+                                <td>2024-01-16</td>
+                                <td>Pending</td>
+                            </tr>
+                            <!-- Add more rows here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-wrapper">
+                    <h3>Commandes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Order A</td>
+                                <td>2024-01-15</td>
+                                <td>Shipped</td>
+                            </tr>
+                            <!-- Add more rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </mat-card>
 </div>
