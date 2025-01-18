@@ -46,12 +46,10 @@ export class ColorComponent implements OnInit{
   async ngOnInit() {
     await this.colorService.getColors().then( colors =>{
       this.availableColors = colors;
-      console.log(colors);
     });
   }
 
   async addColor() {
-    console.log(this.selectedColor);
     await this.colorService.addColor(new Color(this.nameFr,this.nameEn, this.selectedColor, this.texture)).then(colors => {
       this.availableColors = colors;
     });

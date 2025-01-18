@@ -12,9 +12,10 @@ import { OrdersComponent } from './components/pages/admin/orders/orders.componen
 import { QuotesComponent } from './components/pages/admin/quotes/quotes.component';
 import { CostingComponent } from './components/pages/admin/costing/costing.component';
 import { ColorComponent } from './components/pages/admin/color/color.component';
+import { WelcomeComponent } from './components/pages/client/welcome/welcome.component';
 
 export const routes: Routes = [
-  { path: '', component: MaterialsComponent },
+  { path: '', component: WelcomeComponent },
   { path: 'admin/materials', component: MaterialsComponent, canActivate: [AuthGuardAdmin] },
   { path: 'admin/colors', component: ColorComponent, canActivate: [AuthGuardAdmin] },
   { path: 'admin/costing', component: CostingComponent, canActivate: [AuthGuardAdmin] },

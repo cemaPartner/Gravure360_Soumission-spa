@@ -23,7 +23,7 @@
 }
 
 .card .scrollable {
-  flex: 1;                // Allows the content to grow
+  flex: 1; /* Allows the content to grow */
   overflow-y: auto;
   padding: 16px;
   box-sizing: border-box;
@@ -47,7 +47,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 columns per row */
-  grid-gap: 16px; /* Space between items */
+  grid-gap: 0px; /* Space between items */
   overflow-y: auto; /* Enable vertical scrolling */
   max-height: 80vh; /* Set a max height for scrolling */
 }
@@ -65,4 +65,70 @@
   border-radius: 50%;
   border: 1px solid #ccc; /* Optional: Add a border for better visibility */
   margin-right: auto;
+}
+
+.overlapping-card {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 16px; /* Rounded corners */
+  overflow: hidden;
+  margin: 0;
+  box-shadow: none !important; /* Remove shadow */
+  transition: none !important;
+
+  &.transparent {
+    background: repeating-linear-gradient(45deg, #888, #888 10px, transparent 10px, transparent 20px);
+  }
+
+  &.second-card {
+    bottom: 90px;
+    left: 10px;
+  }
+
+  &:hover {
+    box-shadow: none !important; /* Ensure no shadow on hover */
+    transition: none !important;
+  }
+}
+
+.mat-card-content {
+  padding: 16px;
+
+  &:hover {
+    transition: none !important;
+  }
+}
+
+.main {
+  width: 140px;
+  height: 140px;
+  margin: 10px;
+}
+
+div {
+  transition: none !important; /* Disable all shadow animations */
+}
+
+div:hover {
+  box-shadow: none !important; /* Remove shadow on hover */
+  cursor: pointer;
+}
+
+mat-card-content {
+  transition: none !important;
+
+  &:hover {
+    transition: none !important;
+  }
+}
+
+mat-card {
+  box-shadow: none !important; /* Remove default shadow */
+  transition: none !important;
+
+  &:hover {
+    box-shadow: none !important; /* Ensure no shadow on hover */
+    transition: none !important;
+  }
 }

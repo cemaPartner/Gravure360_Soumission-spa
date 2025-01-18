@@ -24,11 +24,11 @@
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Couleur de fond</mat-label>
             <mat-select formControlName="backgroundColor" required>
-              <mat-option *ngFor="let color of availableColors" [value]="color.id">
+              <mat-option *ngFor="let color of availableColors" [value]="color.hex">
                 <div class="color-option">
                   <span class="color-circle" [style.background-color]="color.hex"></span>
                   <span>&nbsp;</span>
-                  <span>{{ color.nameFr }}</span>
+                  <span>{{ color.nameFr }} - {{ color.texture }}</span>
                 </div>
               </mat-option>
             </mat-select>
@@ -40,11 +40,11 @@
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Couleur d'engravage</mat-label>
             <mat-select formControlName="engravingColor" required>
-              <mat-option *ngFor="let color of availableColors" [value]="color.id">
+              <mat-option *ngFor="let color of availableColors" [value]="color.hex">
                 <div class="color-option">
                   <span class="color-circle" [style.background-color]="color.hex"></span>
                   <span>&nbsp;</span>
-                  <span>{{ color.nameFr }}</span>
+                  <span>{{ color.nameFr }} - {{ color.texture }}</span>
                 </div>
               </mat-option>
             </mat-select>
@@ -116,7 +116,22 @@
 
       <div class="grid-container">
         <div *ngFor="let material of materials; let i = index" (click)="selectMaterial(i)">
-          <app-material-item></app-material-item>
+          <mat-card class="main">
+            <mat-card-content> 
+              <mat-card class="overlapping-card" [ngStyle]="{'background-color': material.backgroundColorHex}" [class.transparent]="false">
+                <mat-card-content>
+                </mat-card-content>
+              </mat-card>
+              
+              <mat-card class="overlapping-card second-card" [ngStyle]="{'background-color': material.engravingColorHex}"
+                [class.transparent]="false">
+                <mat-card-content>
+                  <!-- Content for the second card -->
+                  <h5 [ngStyle]="{'color': material.backgroundColorHex}">A</h5>
+                </mat-card-content>
+              </mat-card>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
     </mat-card-content>

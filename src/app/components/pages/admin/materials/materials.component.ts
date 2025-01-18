@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MaterialService } from '../../../../service/material.service';
 import { Material } from '../../../../model/material';
 import { MaterialItemComponent } from './material-item/material-item.component';
@@ -17,6 +17,7 @@ import { ColorService } from '../../../../service/color.service';
   selector: 'app-materials',
   standalone: true,
   imports: [
+    CommonModule,
     MatCardModule, 
     ReactiveFormsModule, 
     MatFormFieldModule, 
@@ -85,8 +86,8 @@ export class MaterialsComponent implements OnInit {
     let material: Material = new Material;
     material.name = this.materialForm.get('name')?.value;
     material.brand = this.materialForm.get('brand')?.value;
-    material.backgroundColor = this.materialForm.get('backgroundColor')?.value;
-    material.engravingColor = this.materialForm.get('engravingColor')?.value;
+    material.backgroundColorHex = this.materialForm.get('backgroundColor')?.value;
+    material.engravingColorHex = this.materialForm.get('engravingColor')?.value;
     material.width = this.materialForm.get('width')?.value;
     material.height = this.materialForm.get('height')?.value;
     material.price = this.materialForm.get('price')?.value;
@@ -99,5 +100,16 @@ export class MaterialsComponent implements OnInit {
 
   selectMaterial(index: number): void {
     this.selectedMaterialIndex.emit(index);
+  }
+
+  getColorHex(colorId: number): string {
+    console.log(colorId);
+    if (!colorId) {
+      return '#FFFFFF'; // Default color if colorId is undefined
+    }
+  
+    const color = this.availableColors.find(c => c.id === colorId);
+    console.log(color);
+    return color?.hex || '#FFFFFF'; // Default to white if color is not found
   }
 }

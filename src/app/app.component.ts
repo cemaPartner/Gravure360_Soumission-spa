@@ -49,6 +49,10 @@ export class AppComponent {
     this.subscription = this.authService.activeUserObservable.subscribe((value) => {
       this.isConnected = value;
       this.currentUser = this.authService.currentUser;
+
+      if(!this.isConnected) {
+        this.openLogin();
+      }
     });
   }
 
