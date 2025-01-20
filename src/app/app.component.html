@@ -12,7 +12,7 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #profileMenu="matMenu">
-    <button mat-menu-item *ngIf="isConnected">
+    <button mat-menu-item *ngIf="isConnected" (click)="goToWelcome()">
       <mat-icon>person</mat-icon>
       <span>Mon profil</span>
     </button>

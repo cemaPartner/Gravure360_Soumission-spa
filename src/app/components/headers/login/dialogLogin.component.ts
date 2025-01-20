@@ -1,4 +1,4 @@
-import { Component, inject, model, signal } from "@angular/core";
+import { Component, EventEmitter, inject, model, Output, signal } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -36,6 +36,7 @@ import { NgIf } from "@angular/common";
 })
 export class DialogLogin {
   readonly dialogRef = inject(MatDialogRef<DialogLogin>);
+  
   hide = signal(true);
   loginError: boolean = false;
   email = '';
@@ -64,5 +65,10 @@ export class DialogLogin {
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
+  }
+
+  register() {
+    this.authService.openRegisterCall();
+    this.close();
   }
 }

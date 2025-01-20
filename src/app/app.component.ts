@@ -54,6 +54,13 @@ export class AppComponent {
         this.openLogin();
       }
     });
+
+    this.subscription = this.authService.openRegisterObservable.subscribe((value) => {
+      console.log(value);
+      if(value === true) {
+        this.openRegister();
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -77,7 +84,7 @@ export class AppComponent {
     }
   }
 
-  openRegister() {
+   public openRegister() {
     if (!this.isConnected) {
       const dialogRef = this.dialog.open(DialogRegister, {
         width: '500px',
@@ -89,6 +96,9 @@ export class AppComponent {
     } else {
       this.authService.logout();
     }
+  }
+  parentFunction(data: any) {
+    console.log('Parent function called with data:', data);
   }
 
   generateName(): string {
@@ -151,6 +161,11 @@ export class AppComponent {
 
   goToOrders() {
     this.router.navigate(['/orders']);
+    this.isShowing = false;
+  }
+
+  goToWelcome() {
+    this.router.navigate(['/']);
     this.isShowing = false;
   }
 }

@@ -19,6 +19,7 @@
   <p *ngIf="loginError">Utilisateur et/ou mot de passe invalide</p>
 </div>
 <mat-dialog-actions>
+  <button mat-button style="margin-right: auto;" (click)="register()">Créer un compte</button>
   <button mat-button (click)="close()">fermer</button>
   <button mat-flat-button (click)="continue()">Continuer</button>
 </mat-dialog-actions>

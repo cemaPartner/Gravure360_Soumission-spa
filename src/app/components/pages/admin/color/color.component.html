@@ -19,6 +19,7 @@
                     <mat-option [value]="'Transparent'">Transparent</mat-option>
                 </mat-select>
             </mat-form-field>
+            <br>
             <input class="color-input" [style.background]="color1" [(colorPicker)]="color1"
                 (colorPickerChange)="onChangeColorHex8($event);" readonly />
             <br>

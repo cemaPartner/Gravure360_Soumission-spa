@@ -11,8 +11,10 @@ export class AuthService {
   private apiUrl = 'http://localhost:8080';
   private jwtHelper = new JwtHelperService();
   public currentUser: User;
+  private openRegister = new BehaviorSubject<boolean>(false);
   private activeUser = new BehaviorSubject<boolean>(false);
 
+  openRegisterObservable = this.openRegister.asObservable();
   activeUserObservable = this.activeUser.asObservable();
 
   constructor(private http: HttpClient) {
@@ -97,5 +99,9 @@ export class AuthService {
 
   getUserInfo(): User {
     return this.currentUser;
+  }
+
+  openRegisterCall() {
+    this.openRegister.next(true);
   }
 }
